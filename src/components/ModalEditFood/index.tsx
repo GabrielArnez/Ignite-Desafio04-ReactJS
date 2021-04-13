@@ -8,9 +8,18 @@ import Input from "../Input";
 interface ModalEditFoodProps {
   isOpen: boolean;
   setIsOpen: () => void;
-  handleAddFood: (data: any) => void;
-  editingFood: () => void;
+  handleAddFood?: (data: any) => void;
+  editingFood: IFood;
   handleUpdateFood: (data: EditFood) => void;
+}
+
+interface IFood {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  available: boolean;
+  image: string;
 }
 
 interface EditFood {
@@ -31,6 +40,7 @@ const ModalEditFood = ({
     handleUpdateFood(data);
     setIsOpen();
   };
+
   return (
     <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
       <Form ref={formRef} onSubmit={handleSubmit} initialData={editingFood}>
